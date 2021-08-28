@@ -15,4 +15,5 @@
           - Pick the oil wells with the highest estimated values;
           - Pick the region with the highest total profit for the selected oil wells. 
           You have data on oil samples from three regions. Parameters of each oil well in the region are already known. Build a model that will help to pick the               region with the highest profit margin. Analyze potential profit and risks using the Bootstrapping technique.|
+|        |
 
