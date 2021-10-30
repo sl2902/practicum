@@ -39,25 +39,26 @@ The following steps were performed:
 
 3) Imputation using LogisticRegression as this would have been overkill.
 
-Challenges 1) The difficulties I encountered were after I removed the target leaked features such as num_days, num_pmt, year, month and dayofweek all in one go.
+**Challenges** 
+1) The difficulties I encountered were after I removed the target leaked features such as num_days, num_pmt, year, month and dayofweek all in one go.
 
-1.1) Based on the feedback, I removed num_pmt, num_days and the Date features year, month and dayofweek, and retrained the model. This drastically reduced the score for LogisticRegression, which returned an AUC score 85%; the other models seem to overfit.
+	1.1) Based on the feedback, I removed num_pmt, num_days and the Date features year, month and dayofweek, and retrained the model. This drastically reduced the score for LogisticRegression, which returned an AUC score 85%; the other models seem to overfit.
 
-1.2) To address this, I added upsampling to the mix and changed the upsampling ratio, however, it only ended up overfitting the RandomForest and CatBoost models, and it helped the LogisticRegression models' AUC score to go up by 1%.
+	1.2) To address this, I added upsampling to the mix and changed the upsampling ratio, however, it only ended up overfitting the RandomForest and CatBoost models, and it helped the LogisticRegression models' AUC score to go up by 1%.
 
-1.3) I changed the Ordinal features to use One-hot encoding, but that didn't help improve the performance.
+	1.3) I changed the Ordinal features to use One-hot encoding, but that didn't help improve the performance.
 
-1.4) I changed the train/test split to 90:10, and noticed a slight improvement.
+	1.4) I changed the train/test split to 90:10, and noticed a slight improvement.
 
-1.5) I played with additional hyperparameters in RandomForest and CatBoost such as max_depth/depth, min_sample_leafs/l2_leaf_reg. min_sample_leafs helped reduce overfitting in RandomForest significantly, but l2_leaf_reg didn't help reduce overfitting. And a similar argument in CatBoost threw an error stating that the feature is not supported on CPU.
+	1.5) I played with additional hyperparameters in RandomForest and CatBoost such as max_depth/depth, min_sample_leafs/l2_leaf_reg. min_sample_leafs helped reduce overfitting in RandomForest significantly, but l2_leaf_reg didn't help reduce overfitting. And a similar argument in CatBoost threw an error stating that the feature is not supported on CPU.
 
-1.6) After more than an hour, I decided to reuse only month and dayofweek along with num_pmt and num_days. Surprisingly, this helped increase the AUC to 87% using LogisticRegression.
+	1.6) After more than an hour, I decided to reuse only month and dayofweek along with num_pmt and num_days. Surprisingly, this helped increase the AUC to 87% using LogisticRegression.
 
-1.7) I dropped upsampling from the mix, and removed dayofweek to see if this would affect the score, but it didn't.
+	1.7) I dropped upsampling from the mix, and removed dayofweek to see if this would affect the score, but it didn't.
 
-1.8) This time, I dropped month, dayofweek and num_days. I re-introduced year into the mix along with `num_pmt`, and this boosted my AUC score to 91% using LogisticRegression; The RandomForestClassifier's performance also improved with slight overfitting. However, CatBoost was severly overfitting although the AUC had improved on the test set.
+	1.8) This time, I dropped month, dayofweek and num_days. I re-introduced year into the mix along with `num_pmt`, and this boosted my AUC score to 91% using LogisticRegression; The RandomForestClassifier's performance also improved with slight overfitting. However, CatBoost was severly overfitting although the AUC had improved on the test set.
 
-1.9) What worked was increasing the train-test split to 90:10, removing num_days, month, and dayofweek, and retaining num_pmt and year with the other one-hot encoded features. Upsampling didn't help to improve the performance beyond this point.
+	1.9) What worked was increasing the train-test split to 90:10, removing num_days, month, and dayofweek, and retaining num_pmt and year with the other one-hot encoded features. Upsampling didn't help to improve the performance beyond this point.
 
 ## Key steps taken
 
