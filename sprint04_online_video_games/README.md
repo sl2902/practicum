@@ -8,17 +8,17 @@ The dataset contains the abbreviation ESRB. The Entertainment Software Rating Bo
 
 ## Description of the data
 
-— `Name` - Name of the game
-— `Platform` - Platform game was developed for
-— `Year_of_Release` - Year game was released
-— `Genre` - Category
-— `NA_sales` - (North American sales in USD million)
-— `EU_sales` - (sales in Europe in USD million)
-— `JP_sales` - (sales in Japan in USD million)
-— `Other_sales` - (sales in other countries in USD million)
-— `Critic_Score` - (maximum of 100)
-— `User_Score` - (maximum of 10)
-— `Rating` - (ESRB)
+- `Name` - Name of the game
+- `Platform` - Platform game was developed for
+- `Year_of_Release` - Year game was released
+- `Genre` - Category
+- `NA_sales` - (North American sales in USD million)
+- `EU_sales` - (sales in Europe in USD million)
+- `JP_sales` - (sales in Japan in USD million)
+- `Other_sales` - (sales in other countries in USD million)
+- `Critic_Score` - (maximum of 100)
+- `User_Score` - (maximum of 10)
+ -`Rating` - (ESRB)
 
 ## Answer these questions:
 
